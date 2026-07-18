@@ -8,7 +8,12 @@ Stonker is a stock analyzer web application that allows users to gain insight on
 ## Project Outline: 
 
 #### Interface Plan: 
-The front end will be entirely in Python with Flask routing and web interface. The GUI will be interactive and fully customizable to the users will. 
+Stonker will use Flask to manage application routing, data processing, and communication between the interface and the program’s Python logic. The web interface will be created with HTML, CSS, and Flask’s Jinja templates.
+
+The application will include at least two pages:
+
+- A home page where users can search for a stock and select analysis options.
+- An analysis dashboard where users can view stock metrics, historical data, and visualizations.
 
 #### Data Collection and Storage Plan: 
 Pandas wil be used to clean and organize the data from a stock market API (TBD). CSV and/or JSON will allow for local storage for the user (save stock insights and page).
