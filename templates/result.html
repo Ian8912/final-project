@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Stonker - {{ ticker }}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <h1>{{ ticker }} <small>(last {{ days }} days)</small></h1>
+
+  <img src="{{ url_for('static', filename=plot) }}" alt="{{ ticker }} plot">
+
+  <table>
+    <tr><th>Start</th><td>${{ stats.start }}</td></tr>
+    <tr><th>End</th><td>${{ stats.end }}</td></tr>
+    <tr><th>Min</th><td>${{ stats.min }}</td></tr>
+    <tr><th>Max</th><td>${{ stats.max }}</td></tr>
+    <tr><th>Mean</th><td>${{ stats.mean }}</td></tr>
+    <tr><th>Change</th><td>{{ stats.pct_change }}%</td></tr>
+    <tr><th>Volatility</th><td>{{ stats.volatility }}%</td></tr>
+  </table>
+
+  <form action="{{ url_for('bookmark') }}" method="post">
+    <input type="hidden" name="ticker" value="{{ ticker }}">
+    <button type="submit">Bookmark</button>
+  </form>
+
+  <p><a href="{{ url_for('index') }}">&larr; Back to search</a></p>
+</body>
+</html>

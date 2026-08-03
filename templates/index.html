@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Stonker</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <h1>Stonker</h1>
+  <p>Search a stock ticker to analyze its recent price history.</p>
+
+  {% if error %}<p class="error">{{ error }}</p>{% endif %}
+
+  <form action="{{ url_for('analyze_view') }}" method="post">
+    <input type="text" name="ticker" placeholder="e.g. AAPL" required>
+    <select name="days">
+      <option value="30">Last 30 days</option>
+      <option value="90" selected>Last 90 days</option>
+      <option value="365">Last year</option>
+    </select>
+    <button type="submit">Analyze</button>
+  </form>
+
+  <h2>Bookmarks</h2>
+  {% if bookmarks %}
+    <ul>
+      {% for t in bookmarks %}
+        <li><a href="{{ url_for('analyze_view', ticker=t, days=90) }}">{{ t }}</a></li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No bookmarks yet.</p>
+  {% endif %}
+</body>
+</html>

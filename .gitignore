@@ -1,1 +1,5 @@
-# Empty so far
+__pycache__/
+*.pyc
+data/*.csv
+data/bookmarks.json
+static/plots/
