@@ -24,8 +24,8 @@
   <h2>Bookmarks</h2>
   {% if bookmarks %}
     <ul>
-      {% for t in bookmarks %}
-        <li><a href="{{ url_for('analyze_view', ticker=t, days=90) }}">{{ t }}</a></li>
+      {% for b in bookmarks %}
+        <li><a href="{{ url_for('analyze_view', ticker=b.ticker, days=b.days) }}">{{ b.ticker }} ({{ b.days }} days)</a></li>
       {% endfor %}
     </ul>
   {% else %}

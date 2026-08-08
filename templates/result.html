@@ -22,6 +22,7 @@
 
   <form action="{{ url_for('bookmark') }}" method="post">
     <input type="hidden" name="ticker" value="{{ ticker }}">
+    <input type="hidden" name="days" value="{{ days }}">
     <button type="submit">Bookmark</button>
   </form>
 

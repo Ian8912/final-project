@@ -67,10 +67,12 @@ def load_bookmarks():
     return []
 
 
-def add_bookmark(ticker):
+def add_bookmark(ticker, days):
+    """Save the ticker together with the day range the user was viewing."""
     marks = load_bookmarks()
-    if ticker.upper() not in marks:
-        marks.append(ticker.upper())
+    entry = {"ticker": ticker.upper(), "days": int(days)}
+    if entry not in marks:  # same ticker at a different range is its own bookmark
+        marks.append(entry)
         with open(BOOKMARKS, "w") as f:
             json.dump(marks, f)
 
@@ -137,8 +139,9 @@ def analyze_view():
 @app.route("/bookmark", methods=["POST"])
 def bookmark():
     ticker = request.form.get("ticker", "")
+    days = request.form.get("days", 90)
     if ticker:
-        add_bookmark(ticker)
+        add_bookmark(ticker, days)
     return redirect(url_for("index"))
 
 
