@@ -1,4 +1,4 @@
-"""Stonker - a Flask stock analyzer for CS122 Advanced Python Programming Course.
+"""Stonks - a Flask stock analyzer.
 
 - web data access (fetch_stock) + data organization (save_csv, bookmarks).
 - analysis (analyze) + visualization (make_plot).
@@ -67,14 +67,25 @@ def load_bookmarks():
     return []
 
 
+def save_bookmarks(marks):
+    with open(BOOKMARKS, "w") as f:
+        json.dump(marks, f)
+
+
 def add_bookmark(ticker, days):
     """Save the ticker together with the day range the user was viewing."""
     marks = load_bookmarks()
     entry = {"ticker": ticker.upper(), "days": int(days)}
     if entry not in marks:  # same ticker at a different range is its own bookmark
         marks.append(entry)
-        with open(BOOKMARKS, "w") as f:
-            json.dump(marks, f)
+        save_bookmarks(marks)
+
+
+def remove_bookmark(ticker, days):
+    """Delete the bookmark matching this ticker and day range."""
+    entry = {"ticker": ticker.upper(), "days": int(days)}
+    marks = [m for m in load_bookmarks() if m != entry]
+    save_bookmarks(marks)
 
 
 # Data Analysis
@@ -142,6 +153,15 @@ def bookmark():
     days = request.form.get("days", 90)
     if ticker:
         add_bookmark(ticker, days)
+    return redirect(url_for("index"))
+
+
+@app.route("/remove", methods=["POST"])
+def remove():
+    ticker = request.form.get("ticker", "")
+    days = request.form.get("days", 90)
+    if ticker:
+        remove_bookmark(ticker, days)
     return redirect(url_for("index"))
 
 

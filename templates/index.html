@@ -2,11 +2,11 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Stonker</title>
+  <title>Stonks</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-  <h1>Stonker</h1>
+  <h1>Stonks</h1>
   <p>Search a stock ticker to analyze its recent price history.</p>
 
   {% if error %}<p class="error">{{ error }}</p>{% endif %}
@@ -25,7 +25,14 @@
   {% if bookmarks %}
     <ul>
       {% for b in bookmarks %}
-        <li><a href="{{ url_for('analyze_view', ticker=b.ticker, days=b.days) }}">{{ b.ticker }} ({{ b.days }} days)</a></li>
+        <li>
+          <a href="{{ url_for('analyze_view', ticker=b.ticker, days=b.days) }}">{{ b.ticker }} ({{ b.days }} days)</a>
+          <form action="{{ url_for('remove') }}" method="post" class="inline">
+            <input type="hidden" name="ticker" value="{{ b.ticker }}">
+            <input type="hidden" name="days" value="{{ b.days }}">
+            <button type="submit">Remove</button>
+          </form>
+        </li>
       {% endfor %}
     </ul>
   {% else %}

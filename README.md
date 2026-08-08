@@ -1,10 +1,10 @@
-# Stonker
+# Stonks
 
 ## Authors: Ian Lingo
 
 ### Project Description
-Stonker is a stock analyzer web application. Users enter a stock ticker,
-choose a time range, and Stonker fetches the recent price history from the internet,
+Stonks is a stock analyzer web application. Users enter a stock ticker,
+choose a time range, and Stonks fetches the recent price history from the internet,
 computes summary statistics, and displays a price chart. Tickers can be bookmarked
 for quick re-analysis.
 
@@ -73,6 +73,4 @@ line is short; it looks best on the **90-day** and **1-year** ranges.
 ## Future Updates
 - User accounts and login so bookmarks are per-user.
 - Compare multiple tickers on the same chart.
-- More analysis (compare different stock tickers).
-- Cache downloaded data to avoid re-fetching and support offline use.
 - Deploy to a hosting service (AWS, Vercel, etc.) instead of running locally.

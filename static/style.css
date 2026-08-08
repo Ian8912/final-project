@@ -12,4 +12,6 @@ table { border-collapse: collapse; margin: 16px 0; }
 th, td { border: 1px solid #ccc; padding: 6px 12px; text-align: left; }
 img { max-width: 100%; border: 1px solid #ddd; }
 .error { color: #b00; }
+.inline { display: inline; margin-left: 8px; }
+.inline button { padding: 2px 8px; font-size: 13px; }
 a { color: #06c; }
